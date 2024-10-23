@@ -7,6 +7,7 @@ export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     
     
+    
     try {
         const response = await fetch(`${api}search?apikey=${apiKey}&page=${page}`, {
             headers: {
