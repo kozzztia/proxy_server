@@ -1,11 +1,11 @@
 async function handler(req, res) {
-    const query = req.query;
+    const { page, q} = req.query;
     const apiKey = process.env.WALLHAVEN_API_KEY;
     const api = 'https://wallhaven.cc/api/v1/search?'
     res.setHeader('Access-Control-Allow-Origin', '*');
     
     try {
-        const response = await fetch(`${api}q=${query.q}&categories=${query.categories}&page=${query.page}`, {
+        const response = await fetch(`${api}${q?`q=${q}&` : ''}page=${page}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'X-API-Key': apiKey,
