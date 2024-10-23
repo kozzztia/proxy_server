@@ -1,16 +1,14 @@
-export default async function handler(req, res) {
-    const { page } = req.query;
+async function handler(req, res) {
+    const query = req.query;
     const apiKey = process.env.WALLHAVEN_API_KEY;
-    const api = 'https://wallhaven.cc/api/v1/'
+    const api = 'https://wallhaven.cc/api/v1/search?'
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    
     
     try {
-        const response = await fetch(`${api}search?apikey=${apiKey}&page=${page}`, {
+        const response = await fetch(`${api}q=${query.q}&categories=${query.categories}&page=${query.page}`, {
             headers: {
                 'Content-Type': 'application/json',
+                'X-API-Key': apiKey,
             }
         });
 
@@ -27,3 +25,4 @@ export default async function handler(req, res) {
         return res.status(500).json({ error: `Error fetching from API: ${error.message}` });
     }
 }
+
