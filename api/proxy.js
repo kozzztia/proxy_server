@@ -3,6 +3,8 @@ export default async function handler(req, res) {
     const apiKey = process.env.WALLHAVEN_API_KEY;
     const api = 'https://wallhaven.cc/api/v1/search?'
     res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
     // categories 100 - 118
     // purity sfw/sketchy/nsfw
