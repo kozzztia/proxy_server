@@ -9,13 +9,14 @@ export default async function handler(req, res) {
     // categories 100 - 118
     // purity sfw/sketchy/nsfw
     // sorting date_added* ,relevance, random, views, favorites, toplist
-
+    
+    const queryUrl = `${api}${q ? `&q=${q}` : ''}${category ? `&categories=${category}` : '&categories=100,101,111'}${purity ? `&purity=${purity}` : '&purity=nsfw'}${sorting ? `&sorting=${sorting}` : '&sorting=date_added'}${page ? `&page=${page}` : '&page=1'}`;
     
     try {
-        const response = await fetch(`${api}${page?`&page=${page}`:"&page=1"}${q?`&q=${q}`:""}${category?`&categories=${category}`:"categories=100,101,111"}${purity?`&purity=${purity}`:"purity=nsfw"}${sorting?`&sorting=${sorting}`:"sorting=date_added*"}`, {
+        const response = await fetch(queryUrl, {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': apiKey,
+                'Authorization': `Bearer ${apiKey}`,
             }
         });
 
