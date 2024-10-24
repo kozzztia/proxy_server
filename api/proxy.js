@@ -12,14 +12,7 @@ export default async function handler(req, res) {
 
     
     try {
-        const response = await fetch(`
-            ${api}
-            ${page?`&page=${page}`:"&page=1"}
-            ${q?`&q=${q}`:""}
-            ${category?`&categories=${category}`:"categories=100,101,111"}
-            ${purity?`&purity=${purity}`:"purity=nsfw"}
-            ${sorting?`&sorting=${sorting}`:"sorting=date_added*"}
-            `, {
+        const response = await fetch(`${api}${page?`&page=${page}`:"&page=1"}${q?`&q=${q}`:""}${category?`&categories=${category}`:"categories=100,101,111"}${purity?`&purity=${purity}`:"purity=nsfw"}${sorting?`&sorting=${sorting}`:"sorting=date_added*"}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': apiKey,
