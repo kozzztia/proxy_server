@@ -12,7 +12,7 @@ export default async function handler(req, res) {
             ${api}
             ${page?`&page=${page}`:"1"}
             ${q?`&q=${q}`:""}
-            ${category?`&category=${category}`:""}
+            ${category?`&categories=${category}`:""}
             `, {
             headers: {
                 'Content-Type': 'application/json',
