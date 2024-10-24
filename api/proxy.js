@@ -2,7 +2,7 @@ export default async function handler(req, res) {
     const { page, q, category, purity , sorting } = req.query;
     const apiKey = process.env.WALLHAVEN_API_KEY;
     const api = 'https://wallhaven.cc/api/v1/search?'
-    res.setHeader('Access-Control-Allow-Origin', 'https://proxy-server-psi-ten.vercel.app');
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
     // categories 100 - 118
     // purity sfw/sketchy/nsfw
