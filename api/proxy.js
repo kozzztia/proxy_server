@@ -1,16 +1,22 @@
 export default async function handler(req, res) {
-    const { page, q, category } = req.query;
+    const { page, q, category, purity , sorting } = req.query;
     const apiKey = process.env.WALLHAVEN_API_KEY;
     const api = 'https://wallhaven.cc/api/v1/search?'
-    res.setHeader('Access-Control-Allow-Origin', 'https://proxy-server-psi-ten.vercel.app/');
+    res.setHeader('Access-Control-Allow-Origin', 'https://proxy-server-psi-ten.vercel.app');
+
+    // categories 100 - 118
+    // purity sfw/sketchy/nsfw
+    // sorting date_added* ,relevance, random, views, favorites, toplist
 
     
     try {
         const response = await fetch(`
             ${api}
-            ${page?`&page=${page}`:"1"}
+            ${page?`&page=${page}`:"&page=1"}
             ${q?`&q=${q}`:""}
-            ${category?`&categories=${category}`:""}
+            ${category?`&categories=${category}`:"categories=100,101,111"}
+            ${purity?`&purity=${purity}`:"purity=nsfw"}
+            ${sorting?`&sorting=${sorting}`:"sorting=date_added*"}
             `, {
             headers: {
                 'Content-Type': 'application/json',
