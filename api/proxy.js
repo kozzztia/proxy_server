@@ -1,5 +1,5 @@
 export default async function handler(req, res) {
-    const { page, q } = req.query;
+    const { page, q, category } = req.query;
     const apiKey = process.env.WALLHAVEN_API_KEY;
     const api = 'https://wallhaven.cc/api/v1/search?'
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -8,7 +8,12 @@ export default async function handler(req, res) {
 
     
     try {
-        const response = await fetch(`${api}page=${page}${q?`&q=${q}`:""}`, {
+        const response = await fetch(`
+            ${api}
+            ${page?`&page=${page}`:"1"}
+            ${q?`&q=${q}`:""}
+            ${category?`&category=${category}`:""}
+            `, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': apiKey,
