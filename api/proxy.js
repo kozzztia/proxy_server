@@ -2,9 +2,7 @@ export default async function handler(req, res) {
     const { page, q, category } = req.query;
     const apiKey = process.env.WALLHAVEN_API_KEY;
     const api = 'https://wallhaven.cc/api/v1/search?'
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Origin', 'https://proxy-server-psi-ten.vercel.app/');
 
     
     try {
